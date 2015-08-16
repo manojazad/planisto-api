@@ -1,0 +1,35 @@
+database:
+  driverClass: org.postgresql.Driver
+  user: planisto_admin
+  password: planisto
+  url: jdbc:postgresql://localhost:5433/planisto
+  
+
+server:
+  applicationConnectors:
+  - type: http
+    port: 4100
+  adminConnectors:
+  - type: http
+    port: 4102
+  requestLog:
+     appenders:
+       - type: file
+         currentLogFilename: ./log/requests.log
+         archivedLogFilenamePattern: ./log/requests-%d.log.gz
+         archivedFileCount: 48
+
+logging:
+  level: DEBUG
+  appenders:
+    - type: file
+      threshold: WARN
+      currentLogFilename: ./log/warn.log
+      archivedLogFilenamePattern: ./log/warn-%d.log.gz
+      archivedFileCount: 48
+
+    - type: file
+      threshold: INFO
+      currentLogFilename: ./log/info.log
+      archivedLogFilenamePattern: ./logs/info-%d.log.gz
+      archivedFileCount: 48
